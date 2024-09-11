@@ -1,0 +1,146 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "EVM.#####",
+ "creation": "2024-09-07 14:22:21.103689",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "event_name",
+  "event_date",
+  "venue",
+  "organizer",
+  "column_break_3yqy",
+  "organizer_email",
+  "start_time",
+  "end_time",
+  "duration",
+  "section_break_taya",
+  "description",
+  "amended_from",
+  "attendees"
+ ],
+ "fields": [
+  {
+   "fieldname": "event_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Event Name",
+   "reqd": 1
+  },
+  {
+   "fieldname": "event_date",
+   "fieldtype": "Date",
+   "in_list_view": 1,
+   "label": "Event Date",
+   "reqd": 1
+  },
+  {
+   "fieldname": "start_time",
+   "fieldtype": "Time",
+   "in_list_view": 1,
+   "label": "Start Time",
+   "reqd": 1
+  },
+  {
+   "fieldname": "end_time",
+   "fieldtype": "Time",
+   "in_list_view": 1,
+   "label": "End Time",
+   "reqd": 1
+  },
+  {
+   "fieldname": "venue",
+   "fieldtype": "Data",
+   "label": "Venue"
+  },
+  {
+   "fieldname": "description",
+   "fieldtype": "Text",
+   "label": "Description"
+  },
+  {
+   "fieldname": "organizer",
+   "fieldtype": "Link",
+   "label": "Organizer",
+   "options": "Employee"
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "Event Management",
+   "print_hide": 1,
+   "read_only": 1,
+   "search_index": 1
+  },
+  {
+   "fieldname": "column_break_3yqy",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "section_break_taya",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "duration",
+   "fieldtype": "Data",
+   "label": "Duration",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "organizer.personal_email",
+   "fieldname": "organizer_email",
+   "fieldtype": "Data",
+   "label": "Organizer Email",
+   "read_only": 1
+  },
+  {
+   "fieldname": "attendees",
+   "fieldtype": "Table",
+   "label": "Attendees",
+   "options": "Attendees"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "is_submittable": 1,
+ "links": [],
+ "modified": "2024-09-11 11:14:54.260830",
+ "modified_by": "Administrator",
+ "module": "Event Management",
+ "name": "Event Management",
+ "naming_rule": "Expression (old style)",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "submit": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Employee",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "track_changes": 1
+}
