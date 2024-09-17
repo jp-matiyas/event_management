@@ -84,10 +84,13 @@
    "fieldtype": "Section Break"
   },
   {
+   "columns": 2,
+   "depends_on": "eval:frappe.user.has_role('Event manager')",
    "fieldname": "duration",
    "fieldtype": "Data",
-   "label": "Duration",
-   "read_only": 1
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Duration"
   },
   {
    "fetch_from": "organizer.personal_email",
@@ -106,7 +109,7 @@
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2024-09-11 11:14:54.260830",
+ "modified": "2024-09-13 12:45:24.985284",
  "modified_by": "Administrator",
  "module": "Event Management",
  "name": "Event Management",

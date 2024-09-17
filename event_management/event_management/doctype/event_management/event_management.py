@@ -9,18 +9,19 @@ from datetime import date,datetime
 class EventManagement(Document):
 	
 	
-	def validate(self):
-	#event date should not be less than current date.
-		current_date = str(date.today())
-		event_date = self.event_date
-		if event_date < current_date:
-			frappe.throw("enter valid event date")
+	# def validate(self):
+	# #event date should not be less than current date.
+	# 	current_date = str(date.today())
+	# 	event_date = self.event_date
+	# 	# if event_date < current_date:
+	# 	# 	frappe.throw("enter valid event date")
 
 
 	def before_save(self): 
 	#getting the values of start and end time and storing it into variables.
-		start_time_str = self.start_time
-		end_time_str = self.end_time
+		start_time_str = str(self.start_time)
+		end_time_str = str(self.end_time)
+		
 
     # Ensure both start_time and end_time are present
 		if start_time_str and end_time_str:
@@ -28,6 +29,7 @@ class EventManagement(Document):
 			try:
 				start_time = datetime.strptime(start_time_str, '%H:%M:%S')
 				end_time = datetime.strptime(end_time_str, '%H:%M:%S')
+				# frappe.throw(f"starttime {start_time} and endtime: {end_time}")
 
             # Calculate the difference
 				time_difference = end_time - start_time
