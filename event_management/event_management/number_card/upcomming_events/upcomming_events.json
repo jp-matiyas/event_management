@@ -1,5 +1,6 @@
 {
  "aggregate_function_based_on": "",
+ "color": "#a25de3",
  "creation": "2024-09-17 13:09:22.703953",
  "docstatus": 0,
  "doctype": "Number Card",
@@ -11,7 +12,7 @@
  "is_public": 1,
  "is_standard": 1,
  "label": "Upcomming events",
- "modified": "2024-09-17 13:09:55.492889",
+ "modified": "2024-09-17 14:33:49.103310",
  "modified_by": "Administrator",
  "module": "Event Management",
  "name": "Upcomming events",
