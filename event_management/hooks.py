@@ -131,7 +131,8 @@ app_license = "mit"
 
 override_doctype_class = {
 	# "ToDo": "custom_app.overrides.CustomToDo"
-    "Installation Note": "event_management.overrides.installation_note_custom"
+    "Installation Note": "event_management.overrides.installation_note_custom",
+    "Sales Invoice": "event_management.overrides.SalesInvoice_custom",
 }
 
 # Document Events

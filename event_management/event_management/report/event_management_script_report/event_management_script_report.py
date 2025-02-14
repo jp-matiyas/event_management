@@ -5,100 +5,83 @@ import frappe
 from frappe import _, msgprint
 
 def execute(filters=None):
-	# if not filters: filters = {}
-
-	columns, data = [], []
-	columns = get_columns()
-	# evm_data = get_evm_data(filters)
-	
-	# if not evm_data:
-	# 	msgprint(_('No records found'))
-	# 	return columns, evm_data
-	
-	data = get_evm_data(filters)
-	# for d in evm_data:
-	# 	row = frappe._dict({
-	# 			'event_name': d.event_name,
-	# 			'event_date': d.event_date,
-	# 			'venue': d.venue,
-	# 			'organizer': d.organizer
-	# 		})
-	# 	data.append(row)
-	return columns, data
+    columns, data = [], []
+    columns = get_columns()
+    data = get_evm_data(filters)
+    return columns, data
 
 def get_columns():
-	return [
-		{
-			'fieldname': 'event_name',
-			'label': _('Event Name'),
-			'fieldtype': 'Data',
-			'width': '120'
-		},
-		{
-			'fieldname': 'event_date',
-			'label': _('Event Date'),
-			'fieldtype': 'Date',
-			'width': '120'
-		},
-		{
-			'fieldname': 'venue',
-			'label': _('Venue'),
-			'fieldtype': 'Data',
-			'width': '100'
-		},
-		{
-			'fieldname': 'organizer',
-			'label': _('Organizer'),
-			'fieldtype': 'Data',
-			'width': '120'
-		},
-	]
-
-# def get_evm_data(filters):
-# 	conditions = get_conditions(filters)
-# 	data = frappe.get_all(
-# 		doctype='Event Management',
-# 		fields=['event_name', 'event_date', 'venue','organizer'],
-# 		filters=conditions,
-# 		order_by='event_name desc'
-# 	)
-# 	return data
-
-# def get_conditions(filters):
-# 	conditions = {}
-# 	for key, value in filters.items():
-# 		if filters.get(key):
-# 			conditions[key] = value
-
-# 	return conditions
+    return [
+        {
+            'fieldname': 'event_name',
+            'label': _('Event Name'),
+            'fieldtype': 'Data',
+            'width': '120'
+        },
+        {
+            'fieldname': 'event_date',
+            'label': _('Event Date'),
+            'fieldtype': 'Date',
+            'width': '120'
+        },
+        {
+            'fieldname': 'venue',
+            'label': _('Venue'),
+            'fieldtype': 'Data',
+            'width': '100'
+        },
+        {
+            'fieldname': 'organizer',
+            'label': _('Organizer'),
+            'fieldtype': 'Data',
+            'width': '120'
+        },
+        {
+            'fieldname': 'customer_name',
+            'label': _('Customer Name'),
+            'fieldtype': 'Data',
+            'width': '150'
+        },
+        {
+            'fieldname': 'customer_email',
+            'label': _('Customer Email'),
+            'fieldtype': 'Data',
+            'width': '150'
+        },
+    ]
 
 def get_evm_data(filters):
-    # Initialize conditions list
     conditions = []
     
-    # Add conditions based on filters
+    # Add filters for Event Management fields
     if filters.get("event_name"):
-        conditions.append("event_name LIKE '%%%s%%'" % filters["event_name"])
+        conditions.append("evm.event_name LIKE '%%%s%%'" % filters["event_name"])
     if filters.get("venue"):
-        conditions.append("venue LIKE '%%%s%%'" % filters["venue"])
+        conditions.append("evm.venue LIKE '%%%s%%'" % filters["venue"])
     if filters.get("event_date"):
-        conditions.append("event_date = '%s'" % filters["event_date"])
+        conditions.append("evm.event_date = '%s'" % filters["event_date"])
     if filters.get("organizer"):
-        conditions.append("organizer LIKE '%%%s%%'" % filters["organizer"])
+        conditions.append("evm.organizer LIKE '%%%s%%'" % filters["organizer"])
 
-    # Join conditions with AND operator
     conditions_str = " AND ".join(conditions) if conditions else "1=1"
 
-    # Query to fetch the data
+    # Query to fetch event management data along with customer details
     query = """
         SELECT
-            event_name, venue, event_date, organizer
+            evm.event_name,
+            evm.venue,
+            evm.event_date,
+            evm.organizer,
+            cust.customer_name,
+            cust.customer_email
         FROM
-            `tabEvent Management`
+            `tabEvent Management` evm
+        LEFT JOIN
+            `tabCustomer` cust ON evm.customer = cust.name
         WHERE
             {conditions}
         ORDER BY
-            event_name DESC
+            evm.event_name DESC
     """.format(conditions=conditions_str)
 
     # Execute the query and return the data

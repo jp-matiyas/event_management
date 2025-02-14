@@ -69,6 +69,42 @@ frappe.ui.form.on("Event Management", {
                 }
             });
         
+    },
+    attendee: function(frm) {
+        if(frm.doc.attendee){
+            frm.clear_table("attendees");
+            frappe.call({
+                method:'frappe.client.get_list',
+                args:{
+                    doctype: 'Attendee',
+                    filters: {
+                        attendee_name: frm.doc.attendee
+                    },
+                    fields: [
+                        'attendee_name',
+                        'attendee_email', 
+                        'attendee_mobile', 
+                    ]
+                },
+                callback: function(response) {
+                    console.log(response.message)
+                    if (response.message && response.message.length > 0) {
+                        response.message.forEach((entry) => {
+                            let row = frm.add_child('attendees');
+                            row.attendee_name = entry.attendee_name;
+                            row.attendee_email = entry.attendee_email;
+                            row.attendee_phone = entry.attendee_mobile;
+                        });
+                        frm.refresh_field('attendees');
+                    } else {
+                        frappe.msgprint(__('No records found for the selected Attendee.'));
+                    }
+                }
+            })
+        } else {
+            frm.clear_table("attendees");
+            frm.refresh_field('attendees');
+        }
     }
        
 });

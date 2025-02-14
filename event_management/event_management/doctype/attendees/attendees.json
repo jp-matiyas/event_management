@@ -15,25 +15,28 @@
    "fieldname": "attendee_name",
    "fieldtype": "Data",
    "in_list_view": 1,
-   "label": "Attendee Name"
+   "label": "Attendee Name",
+   "read_only": 1
   },
   {
    "fieldname": "attendee_email",
    "fieldtype": "Data",
    "in_list_view": 1,
-   "label": "Attendee Email"
+   "label": "Attendee Email",
+   "read_only": 1
   },
   {
    "fieldname": "attendee_phone",
-   "fieldtype": "Phone",
+   "fieldtype": "Data",
    "in_list_view": 1,
-   "label": "Attendee Phone"
+   "label": "Attendee Phone",
+   "read_only": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2024-09-09 14:45:59.937628",
+ "modified": "2024-12-05 17:22:36.982469",
  "modified_by": "Administrator",
  "module": "Event Management",
  "name": "Attendees",

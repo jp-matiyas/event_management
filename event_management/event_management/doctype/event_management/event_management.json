@@ -10,11 +10,13 @@
   "event_date",
   "venue",
   "organizer",
+  "attendee",
   "column_break_3yqy",
   "organizer_email",
   "start_time",
   "end_time",
   "duration",
+  "customer",
   "section_break_taya",
   "description",
   "amended_from",
@@ -104,12 +106,25 @@
    "fieldtype": "Table",
    "label": "Attendees",
    "options": "Attendees"
+  },
+  {
+   "fieldname": "attendee",
+   "fieldtype": "Link",
+   "label": "Attendee",
+   "options": "Attendee",
+   "reqd": 1
+  },
+  {
+   "fieldname": "customer",
+   "fieldtype": "Link",
+   "label": "Customer",
+   "options": "Customer"
   }
  ],
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2024-09-13 12:45:24.985284",
+ "modified": "2025-01-21 12:34:54.980669",
  "modified_by": "Administrator",
  "module": "Event Management",
  "name": "Event Management",
